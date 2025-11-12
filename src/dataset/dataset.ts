@@ -1,5 +1,5 @@
 /* Debug Mode - enable to use test database */
-export const debugMode = false;
+export const debugMode = true;
 
 
 /* Logedin User (Debug only) */

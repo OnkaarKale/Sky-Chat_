@@ -1,31 +1,41 @@
+import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
-import { AuthProvider } from "react-oidc-context";
+import { AuthProvider, type AuthProviderProps } from "react-oidc-context";
 import { ThemeProvider } from "@hooks/useTheme";
-import { UserProvider } from "@hooks/UserContext.tsx";
-import App from "./App.tsx";
+import { UserProvider } from "@hooks/UserContext";
+import App from "./App";
 import "./index.css";
 
-const redirectUri = `${window.location.origin}/home`; // must match Cognito allowed callback URLs
+// Redirect URI must match exactly one of your Cognito allowed callback URLs
+const redirectUri = `${window.location.origin}/home`;
 
-const cognitoAuthConfig = {
+// Cognito OIDC configuration
+const cognitoAuthConfig: AuthProviderProps = {
   authority: "https://us-east-1xillukbyv.auth.us-east-1.amazoncognito.com",
   client_id: "1sel5r7k42ls80ubk82fsv5uel",
   redirect_uri: redirectUri,
   response_type: "code",
   scope: "openid email phone",
-  automaticSilentSignin: false,
-  loadUserInfo: true,
+  loadUserInfo: false,
 };
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <AuthProvider {...cognitoAuthConfig}>
-    <UserProvider>
-      <BrowserRouter>
-        <ThemeProvider>
-          <App />
-        </ThemeProvider>
-      </BrowserRouter>
-    </UserProvider>
-  </AuthProvider>
+const rootElement = document.getElementById("root");
+
+if (!rootElement) {
+  throw new Error("Root element not found");
+}
+
+ReactDOM.createRoot(rootElement).render(
+  <React.StrictMode>
+    <AuthProvider {...cognitoAuthConfig}>
+      <UserProvider>
+        <BrowserRouter>
+          <ThemeProvider>
+            <App />
+          </ThemeProvider>
+        </BrowserRouter>
+      </UserProvider>
+    </AuthProvider>
+  </React.StrictMode>
 );
