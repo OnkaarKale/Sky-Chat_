@@ -11,7 +11,7 @@ import './index.css'
 const redirectUri = `${window.location.origin}/home`; // signin Redirect Uri
 
 const cognitoAuthConfig = {
-  authority: "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_xiLlUkbyV",
+  authority: "https://us-east-1xillukbyv.auth.us-east-1.amazoncognito.com",
   client_id: "1sel5r7k42ls80ubk82fsv5uel",
   redirect_uri: redirectUri,
   response_type: "code",
