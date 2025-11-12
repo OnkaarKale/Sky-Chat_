@@ -9,25 +9,35 @@ const Landing: React.FC = () => {
   const auth = useAuth();
   const navigate = useNavigate();
 
-  const handleSignin = (): void => {
-    console.log("Sign-in clicked", debugMode);
+  // Handle sign-in button click
+  const handleSignin = async (): Promise<void> => {
+    console.log("Sign-in clicked. Debug mode:", debugMode);
 
     if (debugMode) {
       navigate("/home");
     } else {
-      auth.signinRedirect().catch((error) => console.error("Signin error:", error));
+      try {
+        await auth.signinRedirect();
+        console.log("Signin redirect triggered.");
+      } catch (error) {
+        console.error("Signin error:", error);
+      }
     }
   };
 
-  const handleSignup = (): void => {
-    console.log("Sign-up clicked", debugMode);
+  // Handle sign-up button click
+  const handleSignup = async (): Promise<void> => {
+    console.log("Sign-up clicked. Debug mode:", debugMode);
 
     if (debugMode) {
       navigate("/home");
     } else {
-      auth.signinRedirect({ prompt: "signup" }).catch((error) =>
-        console.error("Signup error:", error)
-      );
+      try {
+        await auth.signinRedirect({ prompt: "signup" });
+        console.log("Signup redirect triggered.");
+      } catch (error) {
+        console.error("Signup error:", error);
+      }
     }
   };
 
