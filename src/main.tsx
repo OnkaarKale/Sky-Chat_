@@ -1,14 +1,12 @@
 import ReactDOM from "react-dom/client";
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "react-oidc-context";
 import { ThemeProvider } from "@hooks/useTheme";
 import { UserProvider } from "@hooks/UserContext.tsx";
-import App from './App.tsx'
-import './index.css'
+import App from "./App.tsx";
+import "./index.css";
 
-
-const redirectUri = `${window.location.origin}/home`; // signin Redirect Uri
+const redirectUri = `${window.location.origin}/home`; // must match Cognito allowed callback URLs
 
 const cognitoAuthConfig = {
   authority: "https://us-east-1xillukbyv.auth.us-east-1.amazoncognito.com",
@@ -16,22 +14,18 @@ const cognitoAuthConfig = {
   redirect_uri: redirectUri,
   response_type: "code",
   scope: "openid email phone",
-  automaticSilentSignin: false, // important: don't redirect automatically
+  automaticSilentSignin: false,
   loadUserInfo: true,
 };
 
-
-const root = ReactDOM.createRoot(document.getElementById("root")!);
-
-
-createRoot(document.getElementById('root')!).render(
-    <AuthProvider {...cognitoAuthConfig}>
-      <UserProvider>
-        <BrowserRouter>
-          <ThemeProvider>
-            <App />
-          </ThemeProvider>
-        </BrowserRouter>
-      </UserProvider>
-    </AuthProvider>
-)
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <AuthProvider {...cognitoAuthConfig}>
+    <UserProvider>
+      <BrowserRouter>
+        <ThemeProvider>
+          <App />
+        </ThemeProvider>
+      </BrowserRouter>
+    </UserProvider>
+  </AuthProvider>
+);
