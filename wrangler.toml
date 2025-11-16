@@ -1,11 +1,6 @@
 name = "sky-chat"
 compatibility_date = "2025-11-16"
 
-# Serve your SPA on this route
-routes = [
-  { pattern = "https://sky-chat.onkaarkale.workers.dev/*", zone_name = "", custom_domain = false }
-]
-
 # Workers Sites for React SPA
 [site]
 bucket = "dist"
