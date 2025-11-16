@@ -1,8 +1,0 @@
-name = "sky-chat"
-compatibility_date = "2025-11-16"
-
-# Vite output location
-assets = { directory = "dist" }
-
-# Enable SPA fallback
-assets_fetch_fallback = true
