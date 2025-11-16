@@ -9,10 +9,7 @@ routes = [
   { pattern = "https://sky-chat.onkaarkale.workers.dev/*", zone_name = "", custom_domain = false }
 ]
 
-# Enable SPA fallback (VERY IMPORTANT)
+# Vite SPA fallback
 [site]
 bucket = "dist"
 entry-point = "."
-
-[site["spa_fallback"]]
-enabled = true
