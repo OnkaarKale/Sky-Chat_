@@ -1,0 +1,10 @@
+name = "sky-chat"
+compatibility_date = "2025-11-16"
+
+routes = [
+  { pattern = "https://sky-chat.onkaarkale.workers.dev/*", custom_domain = false }
+]
+
+[site]
+bucket = "dist"
+entry-point = "workers-site"
