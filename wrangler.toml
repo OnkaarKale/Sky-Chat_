@@ -1,4 +1,18 @@
 name = "sky-chat"
 compatibility_date = "2025-11-16"
 
-assets = { directory = "dist" }
+# Serve the Vite build output
+assets = { directory = "dist", binding = "ASSETS" }
+
+# This makes sure ANY unknown path (like /home) loads index.html
+routes = [
+  { pattern = "https://sky-chat.onkaarkale.workers.dev/*", zone_name = "", custom_domain = false }
+]
+
+# Enable SPA fallback (VERY IMPORTANT)
+[site]
+bucket = "dist"
+entry-point = "."
+
+[site["spa_fallback"]]
+enabled = true
