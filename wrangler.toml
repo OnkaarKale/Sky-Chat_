@@ -1,6 +1,5 @@
-name = "sky-chat"
+name = "skychat"
 compatibility_date = "2025-11-16"
 
-# Workers Sites for React SPA
 [site]
 bucket = "dist"
